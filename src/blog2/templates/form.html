@@ -1,0 +1,23 @@
+{%extends "base.html"%}
+
+{%block asif%}
+{% if title %}
+<h1>{{title}}</h1>
+{% endif %}
+
+ <form method="POST" action="."> {% csrf_token %}
+  
+ 
+  {{form.as_p}}
+  {{login.as}} 
+  <button type="submit">Submit</button>
+  </form>
+  <p>hello</p>
+  <style>
+    .login
+    {
+      height: 100vh;;
+    }
+  </style>
+
+{%endblock%}

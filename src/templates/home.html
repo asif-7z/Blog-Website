@@ -1,0 +1,26 @@
+{% extends "base.html"%}
+{% block asif %}
+
+<div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+      <h1 class="text-pop-up-top">{{title}}</h1>
+      </div>
+    </div>
+  </div>
+  
+{% for i in blog_post %}
+    {% include "blog2/list-inline.html" with blog_post=i truncate=True  detail=False%}
+{%endfor%}
+<div class="col-12 col-md-10  mb-3 mx-auto">
+  <button class="asif"><a href="/blog2/">view all</a></button>
+</div>
+<style>
+  h1{
+    color: aliceblue;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 300%;
+  }
+</style>
+
+{%endblock%}

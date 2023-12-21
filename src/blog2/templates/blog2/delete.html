@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{%block asif%}
+<h1> are you sure to delete {{objects.title}}</h1>
+
+<h1>{{objects.title2}}</h1>
+
+<form method="post">{% csrf_token %}
+    <button class="btn btn-danger">click here</button>
+</form>
+{%endblock%}

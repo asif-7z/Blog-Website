@@ -1,0 +1,9 @@
+{%extends "base.html"%}
+
+{% block asif%}
+{% for list in object%}
+<h3>{{list.username}}</h3>
+<li>{{list.text}}</li>
+{%endfor%}
+
+{%endblock%}

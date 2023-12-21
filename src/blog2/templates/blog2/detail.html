@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{%block asif%}
+<div class="row"></div>
+{% include "blog2/list-inline.html" with blog_post=objects detail=True %}
+{%if user.is_authenticated%}
+    {%if request.user.is_staff%}
+       <button type="button" class="btn btn-primary"> <a href="{{objects.get_edit_url}}">edit</a></button>
+       <button type="button" class="btn btn-danger"> <a href="{{objects.get_delete_url}}">delete</a></button>   
+    {%endif%}
+{%endif%}
+</div>
+{% include "comment/comments.html"%}
+{%endblock%}

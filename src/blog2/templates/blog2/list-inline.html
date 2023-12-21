@@ -1,0 +1,22 @@
+<div class="col-12 col-md-10  mb-3 mx-auto">
+<div class="card {% if not blog_post.publish_date%} border border-warning text-dark{%endif%}">
+    <div class="card-body">
+        {% if blog_post.image%}
+         <a href="{{blog_post.get_absolute_url}}"> <img src="{{blog_post.image.url}}" class="img-fluid rounded-start"/></a>
+        {%endif%}
+        <h5 class="card-title">{{blog_post.title2}}</h5>
+        <small class="text-muted">{{blog_post.publish_date}}</small>
+        {% if truncate%}
+            <p class="card-text">{{blog_post.content2 | linebreaks | truncatewords:30}} </p>
+        {%else%}
+            <p class="card-text">{{blog_post.content2 | linebreaks}} </p>
+        {%endif%}
+
+        {% if not detail%}
+            {% if not blog_post.publish_date%} Draft {%endif%}
+             <a href="{{blog_post.get_absolute_url}}" class="btn btn-outline-success">view</a>
+        {%endif%}
+       
+    </div>
+</div>
+</div>
