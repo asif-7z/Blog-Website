@@ -1,9 +1,6 @@
-{%extends "base.html"%}
 
-{% block asif%}
-{% for list in object%}
+
+{% for list in c_obj%}
 <h3>{{list.username}}</h3>
 <li>{{list.text}}</li>
 {%endfor%}
-
-{%endblock%}

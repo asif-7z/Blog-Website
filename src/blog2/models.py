@@ -37,13 +37,18 @@ class BlogPostManager(models.Manager):
 # Create your models here.
 class BlogPost2(models.Model):
     user = models.ForeignKey(User,default=1,null=True,on_delete=models.SET_NULL)
-    title2 = models.CharField(max_length=120)
+    title2 = models.CharField(max_length=120,null=True)
     image = models.ImageField(upload_to='image/',blank=True,null=True)
     slug = models.SlugField(unique=True)
     content2 = models.TextField()
     publish_date = models.DateTimeField(auto_now=False,auto_now_add=False,null=True,blank=True)
-    timestamp = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
+    timestamp = models.DateTimeField(auto_now_add=True,null=True)
+    updated = models.DateTimeField(auto_now=True,null=True)
+
+    def __unicode__(self):
+        return str(self.user.username)
+    def __str__(self):
+        return str(self.title2)
 
 
     objects = BlogPostManager()

@@ -8,8 +8,11 @@ from blog2.models import BlogPost2
 
 @login_required
 @staff_member_required
-def comments(request):
+def comments(request,slug):
+    print("hello")
     template_name = "comment/comments.html"
+    obj = BlogPost2.objects.get(slug=slug)
+    print(obj)
     form = CommentModel(request.POST or None)
     if form.is_valid():
         if request.user.is_authenticated:

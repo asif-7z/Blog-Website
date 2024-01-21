@@ -29,14 +29,16 @@ urlpatterns = [
     path('blog2/create/',blog_post_create_view),
 
     path('blog2/',include('blog2.urls')),
+    path('api/posts/',include('blog2.api.urls',namespace='blogs-api')),
+    path('api/comments/',include('comments.api.urls',namespace='comment-apis')),
     path('',home_page),
     path('home/',home),
     path('page/',page),
     path('about/',about),
     path('contactus/',contact),
     path('search/',search_view),
-    path('blog2/<str:slug>/',comments),
-    path('show/',showcomments),
+    path('blog2/<slug>/comment/',comments),
+    path('blog2/show/',showcomments),
     path('admin/', admin.site.urls),
 ]
 

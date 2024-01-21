@@ -7,25 +7,31 @@
       
       <form method="POST" action="."> {% csrf_token %}
       
+
           <div class="form-group">
               <label for="exampleFormControlTextarea1"></label>
-              <textarea class="form-control" name="text"  id="exampleFormControlTextarea1" rows="3"></textarea>
+              <!-- <textarea class="form-control" name="text"  id="exampleFormControlTextarea1" rows="3"></textarea> -->
+              {{comment.text}}
             </div>
       
               <div class="form-group">
                   <label for="exampleFormControlInput1"></label>
-                  <input type="text" class="form-control" name="username" id="exampleFormControlInput1" placeholder="User Name">
+                  <!-- <input type="text" class="form-control" name="username" id="exampleFormControlInput1" placeholder="User Name"> -->
+                
                 </div>
+
+
       
                 <div class="form-group">
                   <label for="exampleFormControlInput1"></label>
-                  <input type="email" class="form-control"  name="email" id="exampleFormControlInput1" placeholder="Email">
+                  <!-- <input type="email" class="form-control"  name="email" id="exampleFormControlInput1" placeholder="Email"> -->
                 </div>
+
                 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="exampleFormControlTextarea1"></label>
                   <textarea class="form-control" name="title"  id="exampleFormControlTextarea1" rows="3">{{objects.get_title}}</textarea>
-                </div>
+                </div> -->
 
                 
           
