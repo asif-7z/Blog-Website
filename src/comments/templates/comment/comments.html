@@ -1,48 +1,60 @@
 
+    {% extends "base.html" %}
+    {% block asif %}
+    <br>
     <div class="col-6 col-md-5  mb-2 mx-auto">
-        <div class="row">
       <div class="card">
         <div class="card-body">
         <h3>Comment Section</h3>
-      
-      <form method="POST" action="."> {% csrf_token %}
-      
-
-          <div class="form-group">
-              <label for="exampleFormControlTextarea1"></label>
-              <!-- <textarea class="form-control" name="text"  id="exampleFormControlTextarea1" rows="3"></textarea> -->
-              {{comment.text}}
-            </div>
-      
-              <div class="form-group">
-                  <label for="exampleFormControlInput1"></label>
-                  <!-- <input type="text" class="form-control" name="username" id="exampleFormControlInput1" placeholder="User Name"> -->
-                
-                </div>
-
-
-      
-                <div class="form-group">
-                  <label for="exampleFormControlInput1"></label>
-                  <!-- <input type="email" class="form-control"  name="email" id="exampleFormControlInput1" placeholder="Email"> -->
-                </div>
-
-                
-                <!-- <div class="form-group">
-                  <label for="exampleFormControlTextarea1"></label>
-                  <textarea class="form-control" name="title"  id="exampleFormControlTextarea1" rows="3">{{objects.get_title}}</textarea>
-                </div> -->
-
-                
-          
-                
-          <br>
-          
-          <div>
-          <button type="submit" class="btn btn-outline-secondary" >send</button>
+        <div class="card">
+          <div class="card-header">
+            {{list.user}}
           </div>
-      </form>
-      </div>
-        </div></div></div>
+    <div class="card-body">
+        <blockquote>
+                <p>{{list.text}}</p>
+                <small> <footer class="blockquote-footer">{{list.time_stamp}}<cite title="Source Title"></cite></footer></small>
+                {%if list.children.count > 0 and list.children.count < 2 %}<small>{{list.children.count}} reply </small>
+                {% elif   list.children.count >= 1 %}<small>{{list.children.count}} replies </small>{%endif%}  
+  
+         <div class="child_comment">
+                {% for replies in list.children %}
+                        <br>
+                        <div class="card-header">
+                          -{{replies.user}}
+                        </div>
+                        <blockquote style="text-indent: 8%;">
+                        <p>{{replies.text}}</p>
+                        <small> <footer class="blockquote-footer">{{replies.time_stamp}}<cite title="Source Title"></cite></footer></small>
+                        </blockquote>
+                        <a href="/comments/{{replies.id}}/delete/">delete</a>
 
-     
+                {%endfor%}
+          
+
+      
+                <form method="POST" action="."> {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleFormControlTextarea1"></label>
+                      <!-- <textarea class="form-control" name="text"  id="exampleFormControlTextarea1" rows="3"></textarea> -->
+                      <input type="hidden" name="parent_id" value="{{list.id}}">
+                      {{comment.text}}
+                      {{comment.content_type}}
+                      {{comment.content_type.error}}
+                      {{comment.object_id}}
+                      {{comment.object_id.error}}
+                      
+                    
+                    </div>
+                    <br>
+                  
+                  <div>
+                  <button type="submit" id="devil" class="btn btn-outline-secondary" >Reply</button>
+                  </div>
+                </form>
+         </div>
+        </blockquote>
+  </div>
+      </div></div></div></div>
+
+{%endblock%}

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {%block asif%}
+<br>
 {% include "blog2/list-inline.html" with blog_post=objects detail=True %}
 {%if user.is_authenticated%}
     {%if request.user.is_staff%}
@@ -7,13 +8,100 @@
        <button type="button" class="btn btn-danger"> <a href="{{objects.get_delete_url}}">delete</a></button>   
     {%endif%}
 {%endif%}
-{% include "comment/comments.html"%}
-<div class="cc" style="color: aliceblue; position:absolute;right: 50%;">
+
+<div class="col-6 col-md-5  mb-2 mx-auto">
+  <div class="row">
+<div class="card">
+  <div class="card-body">
+  <h3>Comment Section</h3>
+
+<form method="POST" action="."> {% csrf_token %}
+
+
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1"></label>
+        <!-- <textarea class="form-control" name="text"  id="exampleFormControlTextarea1" rows="3"></textarea> -->
+        
+        {{comment.text}}
+        {{comment.content_type}}
+        {{comment.content_type.error}}
+        {{comment.object_id}}
+        {{comment.object_id.error}}
+        
+       
+      </div>
+      <br>
+    
+    <div>
+    <button type="submit" class="btn btn-outline-secondary" >send</button>
+    </div>
+</form>
+</div>
+  </div></div></div>
+
+<hr>
+<div class="cc" style="color: #7f868c; width: 40%; position: absolute; left: 30%;">
 {% for list in c_obj%}
-<h1> Username: {{list.user}}</h1>
-<p>{{list.text}}</p>
+
+<div class="card">
+        <div class="card-header">
+          {{list.user}} | 
+
+        </div>
+  <div class="card-body">
+    <a class="thread" href="/comments/{{list.id}}/comment_thread/">Thread</a>
+
+      <blockquote>
+
+              <p>{{list.text}}</p>
+              <small> <footer class="blockquote-footer">{{list.time_stamp}}<cite title="Source Title"></cite></footer></small>
+              {%if list.children.count > 0 and list.children.count < 2 %}<small>{{list.children.count}} reply |</small>{% elif   list.children.count >= 1 %}<small>{{list.children.count}} replies |</small>{%endif%}  
+              <a class="replybtn" href="#"> Reply </a>  
+
+       <div class="child_comments">
+              {% for replies in list.children %}
+                      <br>
+                      <div class="card-header">
+                        {{replies.user}}
+                      </div>
+                      <blockquote style="text-indent: 5%;">
+                      <p>{{replies.text}}</p>
+                      <small> <footer class="blockquote-footer">{{replies.time_stamp}}<cite title="Source Title"></cite></footer></small>
+                      </blockquote>
+              {%endfor%}
+        
+      
+
+        
+                <form method="POST" action="."> {% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea1"></label>
+                        <input type="hidden" name="parent_id" value="{{list.id}}">
+                        {{comment.text}}
+                        {{comment.content_type}}
+                        {{comment.content_type.error}}
+                        {{comment.object_id}}
+                        {{comment.object_id.error}}
+                      
+                      </div>
+                      <br>  
+              
+                        <div>
+                        <button type="submit" class="btn btn-outline-secondary" >Reply</button>
+                        </div>
+                </form>
+        </div>
+       </blockquote>
+
+  </div>
+  </div>
+  <br>
+
 {%endfor%}
 </div>
+
+<h1 class="hid">hello</h1>
 
 
 {%endblock%}

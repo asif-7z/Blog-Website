@@ -2,6 +2,9 @@ from django.db import models
 from django.conf import settings
 from django.db.models import Q
 from django.utils import timezone
+from django.contrib.contenttypes.models import ContentType
+from django.urls import reverse
+
 
 User = settings.AUTH_USER_MODEL
 
@@ -49,6 +52,20 @@ class BlogPost2(models.Model):
         return str(self.user.username)
     def __str__(self):
         return str(self.title2)
+    def get_api_url(self):
+        return reverse('blogs-api:detail',kwargs={"slug":self.slug})
+    
+    @property
+    def comments(self):
+        from comments.models import CommentSection
+        instance = self
+        qs = CommentSection.objects.filter_blog_obj(instance)
+        return qs
+    @property
+    def get_content_type(self):
+        instance = self
+        content_type = ContentType.objects.get_for_model(instance.__class__)
+        return content_type
 
 
     objects = BlogPostManager()
@@ -58,6 +75,7 @@ class BlogPost2(models.Model):
 
     def get_absolute_url(self):
         return f"/blog2/{self.slug}"
+    
     
     def get_title(self):
         return f"{self.title2}"

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block asif %}
+
+<form   id="delete-form" method="post" action=".">{% csrf_token %}
+    <h3 style="color: aliceblue;">are sure to delete?</h3>
+
+    <p style="color: aliceblue;">{{object.text}}</p>
+
+    <button  id="delete" type="submit">Delete</button>
+
+
+</form>
+
+
+
+{%endblock%}

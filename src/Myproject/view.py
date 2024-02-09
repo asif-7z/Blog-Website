@@ -11,7 +11,7 @@ def home(request):
 def home_page(request):
     my_title = "Welcome to Devil's Blog"
     temp_name = "home.html"
-    obj = BlogPost2.objects.all()[:3]
+    obj = BlogPost2.objects.all()[:2]
     context = {"title": my_title, "blog_post":obj}
     return render(request,temp_name,context)
 

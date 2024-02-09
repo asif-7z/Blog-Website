@@ -4,17 +4,15 @@
 {%for object in objects%}
     {% include "blog2/list-inline.html" with blog_post=object  truncate=True %}
 {%endfor%}
-<div>
-    
+</div>    
+<div class="col-12 col-md-10  mb-3 mx-auto">
     {%if objects.has_previous %} {# whether the previous page exists #}
-        <a href="?page={{objects.previous_page_number}}">Previous</a> {# link to the prev page #}
+     <button class="btn btn-outline-success"><a href="?page={{objects.previous_page_number}}">Previous</a> </button>{# link to the prev page #}
     {% endif %}
     <span>{{objects.number}}</span> {# the current page number #}
    
     {%if objects.has_next %} {# whether the next page exists #}
-        <a href="?page={{objects.next_page_number}}">Next></a> {# link to the next page #}
+    <button class="btn btn-outline-success">  <a href="?page={{objects.next_page_number}}">Next></a></button> {# link to the next page #}
     {% endif %}
 </div>
-</div>
-
 {%endblock%}

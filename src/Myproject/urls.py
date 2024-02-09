@@ -21,7 +21,6 @@ from blog.views import blog_post_page
 from blog2.views import blog_post_create_view,login
 from search.views import search_view
 from django.conf import settings
-from comments.views import comments,showcomments
 urlpatterns = [
  #   path('blog/',blog_post_page),
     path('blog/<int:post_id>/',blog_post_page),
@@ -37,8 +36,7 @@ urlpatterns = [
     path('about/',about),
     path('contactus/',contact),
     path('search/',search_view),
-    path('blog2/<slug>/comment/',comments),
-    path('blog2/show/',showcomments),
+    path('comments/',include('comments.urls')),
     path('admin/', admin.site.urls),
 ]
 
