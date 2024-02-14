@@ -14,5 +14,5 @@ blocks:
             - checkout
             - mkdir .pip_cache
             - cache restore
-            - pip install -r requirements.txt
+            - pip install --cache-dir .pip_cache -r requirements.txt
             - cache store
