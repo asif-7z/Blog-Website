@@ -28,8 +28,7 @@ blocks:
         - name: run_test
           commands:
             - cd src
-            - python manage.py makemigrations
-            - 'y'
+            - python manage.py makemigrations --merge Y
             - python manage.py migrate
             - python manage.py test
         - name: Checklist
