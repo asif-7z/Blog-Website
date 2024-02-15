@@ -28,7 +28,7 @@ blocks:
         - name: run_test
           commands:
             - cd src
-            - python manage.py makemigrations --merge
+            - python manage.py makemigrations
             - 'y'
             - python manage.py migrate
             - python manage.py test
