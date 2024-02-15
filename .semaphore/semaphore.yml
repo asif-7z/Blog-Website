@@ -28,7 +28,7 @@ blocks:
         - name: run_test
           commands:
             - cd src
-            - python manage.py makemigrations
+            - python manage.py makemigrations --merge
             - python manage.py migrate
             - python manage.py test
         - name: Checklist
@@ -38,4 +38,4 @@ blocks:
         - name: style
           commands:
             - pip install flake8
-            - flake8 martor_demo/ --max-line-length=127
+            - flake8 src/ --max-line-length=127
